@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="title">
+    <span class="start h2"> ECM Reference links</span>
+  </div>
+    
+  <!-- Register  -->
+<div class="container py-5">
+	<h1>Enregistrer une application</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}                    
+		<button class="btn btn-primary" type="submit">Enregistrer</button>
+	</form>
+</div>
+
+
+{% endblock %} 

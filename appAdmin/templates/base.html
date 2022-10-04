@@ -1,0 +1,57 @@
+{% load static %}
+
+<html>
+<head>
+    <title>ECM Reference Link</title>
+    <link rel="stylesheet" href="{%static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'icons/bootstrap-icons.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+ {% block content %}{% endblock %}
+</body>
+<script src="{%static 'js/jquery.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.js' %}"></script>
+<script>
+    $(function () {
+
+        document.getElementById("result-alert").style.display="none";
+        $(document).on("click", ".id_url", function () {
+            document.getElementById("result-alert").style.display="none";
+            $.ajax({
+                type: 'get',
+                url: "/ping/",
+                data: { id: this.id },
+                success: function(data)
+                {
+                  console.log(data)
+                  if (data.status==="true") {
+                    document.getElementById("result-alert").style.display="block";
+                    // var result = document.getElementById("result");
+                    // var alert = document.getElementById("result-alert");
+                    // result.appendChild(alert)
+                  } else {
+                    
+                  }
+                  document.getElementById("result-alert").style.display="block";
+                    // var navigateur = document.getElementById("status_navigateur");
+                    // var serveur = document.getElementById("status_serveur");
+                    // var time = document.getElementById("time");
+                    // var result = document.getElementById("result");
+
+                    // navigateur.textContent = "status du navigateur : "+data.status_navigateur;
+                    // serveur.textContent = " status du serveur : "+data.status_serveur;
+                    // time.textContent = " temps de reponse : "+data.time+" ms";
+
+                    // result.appendChild(navigateur)
+                   
+                },
+                error:function (response, error)
+                {
+                }
+              });
+        });
+    });
+</script>
+</html>
