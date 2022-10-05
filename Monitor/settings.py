@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.db.backends.oracle',
 
 
     'appAdmin',
@@ -80,10 +81,22 @@ WSGI_APPLICATION = 'Monitor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+  
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'eldba',
+        'USER': 'lanbang',
+        'PASSWORD': 'EcmLinkDBA2K22',#Please provide the db password here
+        'HOST': 'ECM-HO-ODB-01.ecobank.group',
+        'PORT': '1521',
     }
 }
 
