@@ -22,6 +22,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from appAdmin.models import App
 
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+import time
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+
 
 Ip_Address = None
 Page = 5
@@ -131,9 +140,6 @@ def search(request):
         }
     print("---------",context)
     return render(request, "search.html",context)
-
-
-
 
 
 def ping_url(request):
@@ -303,5 +309,49 @@ def download_excel_data(request):
 def create_form(request):
     form = AppForm()
     return render(request, "link_form.html", {'form':form})
+
+# methode d'envoie de mail
+def send_alert_mail(site_objl):
+    print("mail enter  ", site_objl)
+    if site_objl:
+        email_list_notif = [obj.email for obj in User.objects.all()]
+        print("mail enter  ", email_list_notif)
+        message = render_to_string('site_alert_down.html', {
+            'site_obj': site_objl
+        })
+        mail_subject = 'Site Monitor - Alert Down .'
+        email = EmailMessage(mail_subject, message, to=email_list_notif)
+        email.send(fail_silently=False)
+
+
+
+# methode executée toutes les 
+def check_automatique_url():
+    
+    # recuperation de tous les sites actifs
+    for url_obj in App.objects.filter(is_activate=True):
+        time.sleep(15)
+        if url_obj:
+            print("-------------r------------  ", url_obj.urls)
+            # on essai d'atteindre l'url du site grace à r = requests.get(url_obj.urls)
+            r = requests.get(url_obj.urls)
+            # si le site passe
+            if r.status_code == 200:
+                url_obj.status = True
+                url_obj.save()
+                send_alert_mail(url_obj)
+                print("test")
+            # si le site ne passe pas
+            else:
+                url_obj.status = False
+                url_obj.save()
+                send_alert_mail(url_obj)
+                print(url_obj, "Site Currently down - alert sent2")
+
+
+           
+
+
+   
 
    

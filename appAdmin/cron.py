@@ -2,9 +2,7 @@ import requests
 import time
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-import requests
 import ipaddress
-import requests
 import socket
 from .models import *
 import platform
@@ -33,25 +31,25 @@ def ping(url):
 
 
 # methode d'envoie de mail
-def send_alert_mail(site_objl):
-    print("mail enter  ", site_objl)
-    if site_objl:
-        email_list_notif = [obj.email for obj in User.objects.all()]
-        print("mail enter  ", email_list_notif)
-        message = render_to_string('site_alert_down.html', {
-            'site_obj': site_objl
-        })
-        mail_subject = 'Site Monitor - Alert Down .'
-        email = EmailMessage(mail_subject, message, to=email_list_notif)
-        email.send(fail_silently=False)
+# def send_alert_mail(site_objl):
+#     print("mail enter  ", site_objl)
+#     if site_objl:
+#         email_list_notif = [obj.email for obj in User.objects.all()]
+#         print("mail enter  ", email_list_notif)
+#         message = render_to_string('site_alert_down.html', {
+#             'site_obj': site_objl
+#         })
+#         mail_subject = 'Site Monitor - Alert Down .'
+#         email = EmailMessage(mail_subject, message, to=email_list_notif)
+#         email.send(fail_silently=False)
 
 
 # methode executée toutes les 
 def check_automatique_url():
     
-    # recuperation de tous les site actif
+    # recuperation de tous les sites actifs
     for url_obj in App.objects.filter(is_activate=True):
-        time.sleep(5)
+        # time.sleep(15)
         if url_obj:
             print("-------------r------------  ", url_obj.urls)
             # on essai d'atteindre l'url du site grace à r = requests.get(url_obj.urls)
@@ -59,50 +57,27 @@ def check_automatique_url():
                 r = requests.get(url_obj.urls)
                 # si le site passe
                 if r.status_code == 200:
-                    # on essai de faire le ping grace à ping(url_obj.urls)
-                    try:
-                        if ping(url_obj.urls):
-                            url_obj.status = True
-                            url_obj.status_serveur = True
-                            url_obj.save()
-                    # on met à jour le status du site en BD si le ping ne passe pas
-                    except:
-                        url_obj.status = True
-                        url_obj.status_serveur = False
-                        url_obj.save()
+                    url_obj.status = True
+                    url_obj.save()
+                    Print("test")
                 # si le site ne passe pas
                 else:
-                    # on essai de faire le ping grace à ping(url_obj.urls)
-                    try:
-                        if ping(url_obj.urls):
-                            url_obj.status = False
-                            url_obj.status_serveur = True
-                            url_obj.save()
-                            send_alert_mail(url_obj)
-                    # on met à jour le status du site en BD si le ping ne passe pas et on alert
-                    except:
-                        url_obj.status = False
-                        url_obj.status_serveur = False
-                        url_obj.save()
-                        send_alert_mail(url_obj)
-                        print(url_obj, "Site Currently down - alert sent2")
-            # si l'on n'arrive pas à accéder grace à r = requests.get(url_obj.urls) on fait le ping sur le serveur
-            except:
-                # on essai de faire le ping grace à ping(url_obj.urls)
-                try:
-                    if ping(url_obj.urls):
-                        url_obj.status = False
-                        url_obj.status_serveur = True
-                        url_obj.save()
-                        send_alert_mail(url_obj)
-                # on met à jour le status du site en BD si le ping ne passe pas et on alert
-                except:
                     url_obj.status = False
-                    url_obj.status_serveur = False
                     url_obj.save()
                     send_alert_mail(url_obj)
-                    print(url_obj, "Site Currently down - alert sent4")
+                    print(url_obj, "Site Currently down - alert sent2")
 
+scheduler = BackgroundScheduler()
+scheduler.start()
+scheduler.add_job(
+    func=check_automatique_url,
+    trigger=IntervalTrigger(seconds=2),
+    id='printing_time_job',
+    name='Print time every 2 seconds',
+    replace_existing=True)                    
+
+
+           
 
 
 

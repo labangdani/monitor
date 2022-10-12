@@ -81,24 +81,24 @@ WSGI_APPLICATION = 'Monitor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-  
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'eldba',
-        'USER': 'lanbang',
-        'PASSWORD': 'EcmLinkDBA2K22',#Please provide the db password here
-        'HOST': 'ECM-HO-ODB-01.ecobank.group',
-        'PORT': '1521',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+  
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'eldba',
+#         'USER': 'lanbang',
+#         'PASSWORD': 'EcmLinkDBA2K22',#Please provide the db password here
+#         'HOST': 'ECM-HO-ODB-01.ecobank.group',
+#         'PORT': '1521',
+#     }
+# }
 
 
 # Password validation
@@ -142,8 +142,8 @@ STATIC_URL = '/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'keziahlouvina@gmail.com'
-EMAIL_HOST_PASSWORD = 'reokoihhaqjtnroq' #past the key or password app here
+EMAIL_HOST_USER = 'labangdaniella@gmail.com'
+EMAIL_HOST_PASSWORD = 'Bienvenue1999' #past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
