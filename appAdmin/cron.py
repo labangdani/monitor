@@ -67,14 +67,14 @@ def check_automatique_url():
                     send_alert_mail(url_obj)
                     print(url_obj, "Site Currently down - alert sent2")
 
-scheduler = BackgroundScheduler()
-scheduler.start()
-scheduler.add_job(
-    func=check_automatique_url,
-    trigger=IntervalTrigger(seconds=2),
-    id='printing_time_job',
-    name='Print time every 2 seconds',
-    replace_existing=True)                    
+# scheduler = BackgroundScheduler()
+# scheduler.start()
+# scheduler.add_job(
+#     func=check_automatique_url,
+#     trigger=IntervalTrigger(seconds=2),
+#     id='printing_time_job',
+#     name='Print time every 2 seconds',
+#     replace_existing=True)                    
 
 
            

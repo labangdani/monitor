@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="{%static 'css/custom.css' %}">
     <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{%static 'icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+
 <body>
  {% block content %}{% endblock %}
 </body>
 <script src="{%static 'js/jquery.min.js' %}"></script>
 <script src="{%static 'js/bootstrap.js' %}"></script>
-<script src="{%static 'js/autocomplete.js'%}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 <script>
     $(function () {
 
@@ -55,4 +60,50 @@
         });
     });
 </script>
+
+  <script>
+  $( function() {
+    function log( message ) {
+      $( "<div>" ).text( message );
+      
+    }
+    $( "#example" ).autocomplete({
+      source: [
+                "Facebook",
+                "Facebook 1",
+                "Assam",
+                "Bihar",
+                "Chhattisgarh",
+                "Goa",
+                "Gujarat",
+                "Haryana",
+                "Himachal Pradesh",
+                "Jharkhand",
+                "Karnataka",
+                "Kerala",
+                "Madhya Pradesh",
+                "Maharashtra",
+                "Manipur",
+                "Meghalaya",
+                "Mizoram",
+                "Nagaland",
+                "Odisha",
+                "Punjab",
+                "Rajasthan",
+                "Sikkim",
+                "Tamil Nadu",
+                "Telangana",
+                "Tripura",
+                "Uttar Pradesh",
+                "Uttarakhand",
+                "West Bengal",
+            ],
+      minLength: 2,
+      select: function( event, ui ) {
+        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+      }
+    });
+  } );
+  </script>
+
 </html>

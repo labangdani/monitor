@@ -10,7 +10,7 @@
    <form action="{% url 'search' %}" method="get">
      <div class="input-group">
          {% csrf_token %}
-         <input style="width: 100px;" type="text" class="form-control search" name="application" placeholder="Rechercher...">
+         <input type="text" class="form-control search" name="application" placeholder="Rechercher...">
          <div class="input-group-append">
          </div>
        </div>
@@ -38,12 +38,27 @@
         </div> -->
     </div>
     
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Categorie 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false">Categorie 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false">Categorie 3</a>
+      </li>
+    </ul>
+
     <div class="row">
     <div class="size-table col-12 col-md-8">
     <table class="table card-2">
         <thead>
           <tr>
-            <!-- <th scope="col"><i class="bi bi-arrows-angle-contract"></i> Statut Web</th> -->
+            <th scope="col"><i class="bi bi-arrows-angle-contract"></i> Statut Web</th>
             <th scope="col"><i class="bi bi-app-indicator"></i> Application</th>
             <!-- <th scope="col"><i class="bi bi-link-45deg"></i> URL</th> -->
             <th class="float-right mr-2"scope="col"><i class="bi bi-hand-index"></i> Actions</th>
@@ -53,11 +68,11 @@
         <tbody>
           {% for obj in liste_obj %}
             <tr>
-              <!-- {% if obj.status == True %}
+              {% if obj.status == True %}
                 <th class="text-success" scope="row"><i class="bi bi-arrow-up-right"></i> <i class="bi bi-circle-fill blink-success"></i></th>
               {% else %}
                 <th class="text-danger" scope="row"><i class="bi bi-arrow-down-left"></i> <i class="bi bi-circle-fill blink-danger"></i></th>
-              {% endif %} -->
+              {% endif %}
               <td> {{obj.application}}</td>
               <!-- <td><a href="#">{{obj.urls}}</a></td> -->
               <td><a target="_blank" rel="noopener noreferrer" href="{{obj.urls}}"><button class="btn btn-dark float-right ml-2 "><i class="bi bi-box-arrow-up-right"></i></td>
