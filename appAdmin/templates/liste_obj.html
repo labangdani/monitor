@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% extends 'test.html' %}
+
+
+{% block content %}
+<div class="" style="width: 100%; 
+                    height: 60px; 
+                    background-color: rgba(12, 12, 128, 0.767); 
+                    color: white;
+                    ">
+<h4 class="mx-2">ECM REFERENCE LINK</h4>
+</div>
+<hr style="border: 3px solid rgb(47, 91, 173); margin-top: -1px;">
+
+<div class="row">
+    <div class="col-3 mx-3">
+        <div class="input-group rounded">
+            <input style="border-radius: 15px;" type="search"  class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+    </div>
+</div>
+<hr>
+
+
+<div class="row mx-2 mt-5">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12 mb-2">
+                <a href="url 'actif_list'" style="background-color: green; color: white;" class="btn btn-green btn-sm"><i class="fas fa-arrow-up"></i></a>
+                <button  class="btn btn-danger btn-sm"><i class="fas fa-arrow-down"></i></button>
+                <button  class="btn  btn-sm"><i class="fas fa-bars"></i></button>
+
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <!-- <th style="width: 10%;">Status</th> -->
+                        <th style="width: 30%;">Application</th>
+                        <!-- <th style="width: 40%;">Urls</th> -->
+                        <th style="width: 20%;">Actions</th>
+                    </thead>
+
+                    <tbody>
+                        {% for obj in liste_obj %}
+                            <tr>
+                                {% if obj.status == True %}
+                                <td>
+                                    <i style="color: green;" class="fas fa-arrow-up"></i>
+                                    <i style="color: green;" class="fas fa-circle"></i>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <i style="color: red;" class="fas fa-arrow-down"></i>
+                                    <i style="color: red;" class="fas fa-circle"></i>
+                                </td>
+                                {% endif %}
+                                <td>
+                                    {{obj.application}}
+                                </td>
+                                <td>
+                                    <a href="">{{obj.urls}}</a>
+                                </td>
+                                <td>
+                                    <button class="btn btn-black btn-sm"><i class="fas fa-mobile"></i></button>
+                                    <button class="btn btn-black btn-sm"><i class="fas fa-arrow-up-right-from-square"></i></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <button class="btn btn-black btn-sm mt-2 mx-2" style="font-size: 10px;"><i style="color: green;" class="fas fa-file"></i> <i class="fas fa-download"></i>telecharger</button>
+
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header" style="color: white; background-color: rgb(7, 7, 61);">Statut du projet</div>
+            <div class="card-body" style="height: 250px;">
+
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}   

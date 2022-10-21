@@ -1,0 +1,112 @@
+.title{
+    
+    /* padding-left: 2%; */
+    background-color: rgb(0, 92, 128);
+    text-align: center;
+
+}
+.start{
+
+    text-transform: uppercase;
+    color: white !important;
+    line-height: 110px !important;
+}
+.space-1{
+    height: 5vh;
+}
+.space-2{
+    height: 3vh;
+}
+/*.size{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.size-2{
+ margin-left: 1%;   
+}*/
+.size-table{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+.btn-danger{
+    background-color: rgb(249, 97, 97) !important;
+    border: unset !important;
+}
+.btn-success{
+    background-color:  rgb(46, 102, 41) !important;
+    border: unset !important;
+}
+/*.text-success{
+    color: rgb(63, 157, 107) !important;
+}
+.text-danger{
+    color: rgb(249, 97, 97) !important;
+}*/
+
+.text-right{
+    text-align: right;
+}
+
+.search{
+    border-radius: 50px !important;
+}
+
+.notifs{
+    background-color: rgb(248, 248, 248);
+    width: 100%;
+    height: 50vh;
+    float: left !important;
+}
+.row{
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+.entete{
+    background-color: rgb(50, 50, 50);
+    color: white;
+    padding: 2%;
+}
+.sub{
+    height: 1vh;
+    background-color: rgb(46, 102, 41);
+}
+.blink-success{
+    /*color: #2aa158;*/
+    animation: blinkingSucess 0.7s infinite !important;
+}
+@keyframes blinkingSucess{
+    0%		{ color: #0b843e;}
+    25%		{ color: #0eb956;}
+    50%		{ color: #17c35f;}
+    75%		{ color: #24a95b;}
+    100%	{ color: #0b843e;}
+}
+
+.blink-danger{
+    animation: blinkingDanger 0.7s infinite !important;
+}
+@keyframes blinkingDanger{
+    0%		{ color: #840b0b;}
+    25%		{ color: #ac0e0e;}
+    50%		{ color: #e11515;}
+    75%		{ color: #b91313;}
+    100%	{ color: #840b0b;}
+}
+.card-2 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+#result-alert {
+    display: none;
+}
+
+table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td , th {
+    text-align: left;
+    padding: 8px;
+}
